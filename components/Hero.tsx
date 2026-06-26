@@ -44,7 +44,7 @@ export function Hero() {
       {/* Video background */}
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover object-[50%_78%]"
         poster="/hero/hero-poster.jpg"
         autoPlay={!reduceMotion}
         loop

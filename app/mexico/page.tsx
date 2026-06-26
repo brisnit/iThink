@@ -38,15 +38,7 @@ export default function MexicoPage() {
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
           <Reveal className="lg:col-span-6">
             <div className="relative">
-              <div
-                className="img-halo absolute -inset-6 -z-20 rounded-[2.75rem]"
-                aria-hidden
-              />
-              <div
-                className="absolute -inset-3 -z-10 rounded-[2rem] gradient-brand opacity-90 blur-sm"
-                aria-hidden
-              />
-              <div className="overflow-hidden rounded-[1.75rem] border-4 border-white shadow-glow">
+              <div className="overflow-hidden rounded-[1.75rem] border border-ink/10 shadow-2xl">
                 <Image
                   src={images.mexico}
                   alt="¡Buena Onda! — The Garden of Dreams in Punta Colonet, Mexico"

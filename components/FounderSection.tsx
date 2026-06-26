@@ -14,15 +14,7 @@ export function FounderSection({
       <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-5">
           <div className="relative mx-auto max-w-sm">
-            <div
-              className="img-halo absolute -inset-6 -z-20 rounded-[2.75rem]"
-              aria-hidden
-            />
-            <div
-              className="absolute -inset-3 -z-10 rounded-[2rem] gradient-brand opacity-90 blur-sm"
-              aria-hidden
-            />
-            <div className="overflow-hidden rounded-[1.75rem] border-4 border-white shadow-glow">
+            <div className="overflow-hidden rounded-[1.75rem] border border-ink/10 shadow-2xl">
               <Image
                 src={images.chad}
                 alt="Chad Furlong, founder of iTHINKBIG"

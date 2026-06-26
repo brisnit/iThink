@@ -42,18 +42,6 @@
   }
 }
 
-@keyframes glow-pulse {
-  0%,
-  100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
-  }
-}
-
 @layer base {
   :root {
     --background: #ffffff;
@@ -157,25 +145,5 @@
 
   .ring-soft {
     box-shadow: inset 0 0 0 1px rgba(7, 9, 15, 0.08);
-  }
-
-  /* Soft radiating glow placed behind images */
-  .img-halo {
-    background-image: linear-gradient(
-      125deg,
-      var(--color-brand-600) 0%,
-      var(--color-accent) 55%,
-      var(--color-brand-500) 100%
-    );
-    filter: blur(40px);
-    opacity: 0.6;
-    will-change: opacity, transform;
-    animation: glow-pulse 6s ease-in-out infinite;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .img-halo {
-      animation: none;
-    }
   }
 }
