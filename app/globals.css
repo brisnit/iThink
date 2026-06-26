@@ -1,26 +1,149 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand palette — electric iTHINKBIG blue on a black/white foundation */
+  --color-brand-50: #eaf0ff;
+  --color-brand-100: #d3e0ff;
+  --color-brand-200: #a8c1ff;
+  --color-brand-300: #7a9dff;
+  --color-brand-400: #4b73ff;
+  --color-brand-500: #1f4eff;
+  --color-brand-600: #0d3af0;
+  --color-brand-700: #0a2cc4;
+  --color-brand-800: #0b2596;
+  --color-brand-900: #0e2576;
+
+  --color-accent: #00e0ff;
+  --color-accent-soft: #6df0ff;
+
+  --color-ink: #07090f;
+  --color-ink-soft: #1a1d27;
+  --color-paper: #ffffff;
+  --color-mist: #f4f6fb;
+  --color-mist-2: #eef1f8;
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+
+  --radius-xl2: 1.75rem;
+
+  --shadow-glow: 0 24px 60px -20px rgba(31, 78, 255, 0.45);
+  --shadow-card: 0 18px 40px -24px rgba(7, 9, 15, 0.35);
+
+  --animate-marquee: marquee 32s linear infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #07090f;
+  }
+
+  * {
+    border-color: rgba(7, 9, 15, 0.08);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-brand-500);
+    color: #fff;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .container-x {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 80rem;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-x {
+      padding-inline: 2rem;
+    }
+  }
+
+  .gradient-brand {
+    background-image: linear-gradient(
+      120deg,
+      var(--color-brand-700) 0%,
+      var(--color-brand-500) 45%,
+      var(--color-brand-400) 100%
+    );
+  }
+
+  .gradient-ink {
+    background-image: radial-gradient(
+        120% 120% at 0% 0%,
+        rgba(31, 78, 255, 0.25) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        120% 120% at 100% 0%,
+        rgba(0, 224, 255, 0.18) 0%,
+        transparent 50%
+      ),
+      linear-gradient(180deg, #07090f 0%, #0b1024 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      100deg,
+      var(--color-brand-600),
+      var(--color-accent)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .grid-dots {
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.14) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
+  }
+
+  .ring-soft {
+    box-shadow: inset 0 0 0 1px rgba(7, 9, 15, 0.08);
+  }
 }
