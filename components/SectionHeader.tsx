@@ -27,8 +27,16 @@ export function SectionHeader({
     >
       {eyebrow ? (
         <Reveal>
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
+          <span
+            className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] ${
+              tone === "light" ? "text-accent" : "text-brand-700"
+            }`}
+          >
+            <span
+              className={`h-1.5 w-1.5 rounded-full ${
+                tone === "light" ? "bg-accent" : "bg-brand-500"
+              }`}
+            />
             {eyebrow}
           </span>
         </Reveal>

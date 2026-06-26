@@ -51,7 +51,8 @@ export function PageHero({
           </nav>
         ) : null}
 
-        <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-accent backdrop-blur">
+        <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-accent">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
           {eyebrow}
         </span>
         <h1 className="mt-5 max-w-3xl text-4xl font-extrabold leading-[1.02] text-balance sm:text-5xl md:text-6xl">

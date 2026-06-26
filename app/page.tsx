@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Hero } from "@/components/Hero";
-import { Marquee } from "@/components/Marquee";
 import { SectionHeader } from "@/components/SectionHeader";
 import { StatCard } from "@/components/StatCard";
 import { TopicCard } from "@/components/TopicCard";
@@ -16,15 +15,14 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Marquee />
 
-      {/* Stat strip */}
+      {/* Stat strip — standalone stats, no cards */}
       <section className="gradient-ink relative overflow-hidden">
         <div className="container-x relative py-16 md:py-20">
-          <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Stagger className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-white/10">
             {stats.map((s) => (
-              <StaggerItem key={s.label}>
-                <StatCard {...s} tone="light" />
+              <StaggerItem key={s.label} className="lg:px-8 lg:first:pl-0">
+                <StatCard {...s} tone="light" bare />
               </StaggerItem>
             ))}
           </Stagger>

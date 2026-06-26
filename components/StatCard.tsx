@@ -3,10 +3,36 @@ type Props = {
   label: string;
   sub?: string;
   tone?: "dark" | "light";
+  bare?: boolean;
 };
 
-export function StatCard({ value, label, sub, tone = "light" }: Props) {
+export function StatCard({ value, label, sub, tone = "light", bare = false }: Props) {
   const isLight = tone === "light";
+
+  if (bare) {
+    return (
+      <div className="text-center sm:text-left">
+        <div className="text-5xl font-extrabold tracking-tight md:text-6xl">
+          <span className="text-gradient">{value}</span>
+        </div>
+        <div
+          className={`mt-2 text-sm font-bold uppercase tracking-wide ${
+            isLight ? "text-white" : "text-ink"
+          }`}
+        >
+          {label}
+        </div>
+        {sub ? (
+          <div
+            className={`mt-1 text-sm ${isLight ? "text-white/55" : "text-ink/55"}`}
+          >
+            {sub}
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+
   return (
     <div
       className={`group relative overflow-hidden rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1 ${

@@ -58,20 +58,16 @@ export function Hero() {
         <source src="/hero/hero.mp4" type="video/mp4" />
       </video>
 
-      {/* Legibility overlays — darker toward the text side, brand tint for energy */}
+      {/* Legibility overlays — lighter so the video reads through clearly */}
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/80 to-ink/55"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/45 to-ink/10"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/25"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-ink/20"
         aria-hidden
       />
-      <div
-        className="pointer-events-none absolute inset-0 mix-blend-multiply gradient-brand opacity-15"
-        aria-hidden
-      />
-      <div className="grid-dots absolute inset-0 opacity-25" aria-hidden />
+      <div className="grid-dots absolute inset-0 opacity-15" aria-hidden />
       {/* floating shapes */}
       <motion.div
         aria-hidden
@@ -88,15 +84,15 @@ export function Hero() {
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="container-x relative grid gap-12 py-20 md:py-28 lg:grid-cols-12 lg:items-center lg:gap-8 lg:py-32">
-        <div className="lg:col-span-7">
+      <div className="container-x relative py-24 md:py-32 lg:py-40">
+        <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm font-semibold text-white/85 backdrop-blur"
+            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-accent"
           >
-            <Sparkles className="h-4 w-4 text-accent" />
+            <Sparkles className="h-4 w-4" />
             One of the nation&apos;s top assembly programs
           </motion.div>
 
@@ -107,25 +103,7 @@ export function Hero() {
             className="mt-6 text-5xl font-extrabold leading-[0.98] tracking-tight text-balance sm:text-6xl md:text-7xl"
           >
             Inspire the Young to{" "}
-            <span className="relative whitespace-nowrap">
-              <span className="text-gradient">Think Big</span>
-              <svg
-                className="absolute -bottom-2 left-0 w-full"
-                viewBox="0 0 300 12"
-                fill="none"
-                aria-hidden
-              >
-                <motion.path
-                  d="M3 8C60 3 140 2 297 7"
-                  stroke="#00e0ff"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1, delay: 0.6, ease }}
-                />
-              </svg>
-            </span>
+            <span className="text-gradient">Think Big</span>
           </motion.h1>
 
           <motion.p
@@ -177,50 +155,6 @@ export function Hero() {
             <span>Trusted by schools & districts nationwide</span>
           </motion.div>
         </div>
-
-        {/* Visual stat panel */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, ease, delay: 0.25 }}
-          className="lg:col-span-5"
-        >
-          <div className="relative mx-auto max-w-md rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl">
-            <div className="absolute -right-3 -top-3 rounded-full bg-accent px-4 py-1.5 text-sm font-extrabold text-ink shadow-glow">
-              Since 2000
-            </div>
-            <div className="text-center">
-              <div className="text-7xl font-extrabold leading-none tracking-tighter md:text-8xl">
-                <span className="text-gradient">3M+</span>
-              </div>
-              <p className="mt-2 text-base font-bold uppercase tracking-wide text-white/80">
-                Students inspired
-              </p>
-            </div>
-            <div className="mt-8 grid grid-cols-2 gap-3">
-              {[
-                { k: "Nationwide", v: "Assemblies" },
-                { k: "501(c)(3)", v: "Nonprofit" },
-                { k: "K–12", v: "& Leadership" },
-                { k: "25+ yrs", v: "Of impact" },
-              ].map((b) => (
-                <div
-                  key={b.k}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center"
-                >
-                  <div className="text-lg font-extrabold text-white">{b.k}</div>
-                  <div className="text-xs uppercase tracking-wide text-white/55">
-                    {b.v}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p className="mt-6 text-center text-sm italic text-white/60">
-              “We&apos;re not ashamed to agree — we&apos;re one of the
-              nation&apos;s top assembly programs.”
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
