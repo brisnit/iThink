@@ -1,26 +1,90 @@
 "use client";
 
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Star } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+function subscribeReducedMotion(callback: () => void) {
+  const mq = window.matchMedia(REDUCED_MOTION_QUERY);
+  mq.addEventListener("change", callback);
+  return () => mq.removeEventListener("change", callback);
+}
+
+function useReducedMotion() {
+  return useSyncExternalStore(
+    subscribeReducedMotion,
+    () => window.matchMedia(REDUCED_MOTION_QUERY).matches,
+    () => false,
+  );
+}
+
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    if (reduceMotion) {
+      video.pause();
+    } else {
+      // Some browsers need an explicit play() call after the muted flag is set.
+      void video.play().catch(() => {});
+    }
+  }, [reduceMotion]);
+
   return (
-    <section className="relative overflow-hidden gradient-ink text-white">
-      <div className="grid-dots absolute inset-0 opacity-50" aria-hidden />
+    <section className="relative overflow-hidden bg-ink text-white">
+      {/* Video background */}
+      <video
+        ref={videoRef}
+        className="absolute inset-0 h-full w-full object-cover"
+        poster="/hero/hero-poster.jpg"
+        autoPlay={!reduceMotion}
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        aria-hidden
+        tabIndex={-1}
+      >
+        <source src="/hero/hero.webm" type="video/webm" />
+        <source src="/hero/hero.mp4" type="video/mp4" />
+      </video>
+
+      {/* Legibility overlays — darker toward the text side, brand tint for energy */}
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/80 to-ink/55"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/25"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 mix-blend-multiply gradient-brand opacity-15"
+        aria-hidden
+      />
+      <div className="grid-dots absolute inset-0 opacity-25" aria-hidden />
       {/* floating shapes */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-brand-500/30 blur-3xl"
-        animate={{ y: [0, 30, 0], x: [0, 20, 0] }}
+        className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-brand-500/25 blur-3xl"
+        animate={
+          reduceMotion ? undefined : { y: [0, 30, 0], x: [0, 20, 0] }
+        }
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-accent/20 blur-3xl"
-        animate={{ y: [0, -40, 0] }}
+        className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-accent/15 blur-3xl"
+        animate={reduceMotion ? undefined : { y: [0, -40, 0] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
 
