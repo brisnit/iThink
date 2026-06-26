@@ -39,6 +39,10 @@ export default function MexicoPage() {
           <Reveal className="lg:col-span-6">
             <div className="relative">
               <div
+                className="img-halo absolute -inset-6 -z-20 rounded-[2.75rem]"
+                aria-hidden
+              />
+              <div
                 className="absolute -inset-3 -z-10 rounded-[2rem] gradient-brand opacity-90 blur-sm"
                 aria-hidden
               />
