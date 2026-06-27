@@ -37,14 +37,15 @@ export default function MexicoPage() {
       <section className="container-x py-16 md:py-24">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
           <Reveal className="lg:col-span-6">
-            <div className="relative">
+            <div className="relative mx-auto max-w-md">
               <div className="overflow-hidden rounded-[1.75rem] border border-ink/10 shadow-2xl">
                 <Image
                   src={images.mexico}
                   alt="¡Buena Onda! — The Garden of Dreams in Punta Colonet, Mexico"
-                  width={1000}
-                  height={700}
-                  className="h-auto w-full object-cover"
+                  width={304}
+                  height={304}
+                  sizes="(min-width: 1024px) 28rem, 100vw"
+                  className="aspect-square h-auto w-full object-cover"
                 />
               </div>
             </div>

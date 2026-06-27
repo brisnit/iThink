@@ -25,8 +25,7 @@ export const site = {
 export const images = {
   logo: "https://images.squarespace-cdn.com/content/v1/56e35a3c60b5e97c53ff7e89/ac52d857-36db-4597-bb4b-bb3c9b8d9f9d/iTHINK%2BFRONT_businesscard-3-2.5inx2%2BF.ai.ps.ai.jpg",
   chad: "https://images.squarespace-cdn.com/content/v1/56e35a3c60b5e97c53ff7e89/1498605338418-MIZU7TAHPPRKTM7M2DA0/Chad%2BPrimary%2BHead%2BShot.jpg",
-  mexico:
-    "https://images.squarespace-cdn.com/content/v1/56e35a3c60b5e97c53ff7e89/1541181218263-7YLSGOFDYA063MJFLWQR/BO%2BWeb.jpeg",
+  mexico: "/buena-onda.png",
 } as const;
 
 export const nav = [
@@ -42,7 +41,7 @@ export const nav = [
 export const stats = [
   { value: "3M+", label: "Students inspired", sub: "Across the nation" },
   { value: "2000", label: "Inspiring since", sub: "25+ years of impact" },
-  { value: "501(c)(3)", label: "Nonprofit", sub: "Founded in San Diego" },
+  { value: "501C3", label: "Nonprofit", sub: "Founded in San Diego" },
   { value: "#1", label: "Top-rated program", sub: "By the schools we serve" },
 ] as const;
 

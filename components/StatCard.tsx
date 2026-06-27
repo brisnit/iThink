@@ -12,11 +12,11 @@ export function StatCard({ value, label, sub, tone = "light", bare = false }: Pr
   if (bare) {
     return (
       <div className="text-center">
-        <div className="whitespace-nowrap text-3xl font-extrabold tracking-tight sm:text-4xl">
-          <span className="text-gradient">{value}</span>
+        <div className="whitespace-nowrap text-5xl font-extrabold leading-none tracking-tight text-accent sm:text-6xl">
+          {value}
         </div>
         <div
-          className={`mt-2 text-sm font-bold uppercase tracking-wide ${
+          className={`mt-4 text-sm font-bold uppercase tracking-[0.12em] sm:text-base ${
             isLight ? "text-white" : "text-ink"
           }`}
         >
@@ -24,7 +24,9 @@ export function StatCard({ value, label, sub, tone = "light", bare = false }: Pr
         </div>
         {sub ? (
           <div
-            className={`mt-1 text-sm ${isLight ? "text-white/55" : "text-ink/55"}`}
+            className={`mt-1.5 text-xs sm:text-sm ${
+              isLight ? "text-white/50" : "text-ink/50"
+            }`}
           >
             {sub}
           </div>
