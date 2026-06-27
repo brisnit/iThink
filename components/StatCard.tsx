@@ -11,7 +11,7 @@ export function StatCard({ value, label, sub, tone = "light", bare = false }: Pr
 
   if (bare) {
     return (
-      <div className="text-center sm:text-left">
+      <div className="text-center">
         <div className="whitespace-nowrap text-3xl font-extrabold tracking-tight sm:text-4xl">
           <span className="text-gradient">{value}</span>
         </div>

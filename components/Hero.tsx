@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -90,9 +90,8 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease }}
-            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-accent"
+            className="text-sm font-semibold uppercase tracking-[0.18em] text-accent"
           >
-            <Sparkles className="h-4 w-4" />
             One of the nation&apos;s top assembly programs
           </motion.div>
 

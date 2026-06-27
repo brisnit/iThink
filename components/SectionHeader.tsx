@@ -28,15 +28,10 @@ export function SectionHeader({
       {eyebrow ? (
         <Reveal>
           <span
-            className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] ${
+            className={`text-xs font-bold uppercase tracking-[0.18em] ${
               tone === "light" ? "text-accent" : "text-brand-700"
             }`}
           >
-            <span
-              className={`h-1.5 w-1.5 rounded-full ${
-                tone === "light" ? "bg-accent" : "bg-brand-500"
-              }`}
-            />
             {eyebrow}
           </span>
         </Reveal>

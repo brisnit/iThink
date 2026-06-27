@@ -19,9 +19,9 @@ export default function HomePage() {
       {/* Stat strip — standalone stats, no cards */}
       <section className="gradient-ink relative overflow-hidden">
         <div className="container-x relative py-16 md:py-20">
-          <Stagger className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-white/10">
+          <Stagger className="mx-auto flex max-w-4xl flex-wrap items-start justify-center gap-x-14 gap-y-10 sm:gap-x-20">
             {stats.map((s) => (
-              <StaggerItem key={s.label} className="lg:px-8 lg:first:pl-0">
+              <StaggerItem key={s.label}>
                 <StatCard {...s} tone="light" bare />
               </StaggerItem>
             ))}
