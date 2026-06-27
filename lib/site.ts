@@ -49,6 +49,7 @@ export type Topic = {
   title: string;
   description: string;
   group: "Inspiration" | "Prevention" | "Leadership" | "Events";
+  image: string;
 };
 
 export const topics: Topic[] = [
@@ -57,72 +58,84 @@ export const topics: Topic[] = [
     description:
       "Our flagship message — helping students break through barriers and believe a bigger life is possible.",
     group: "Inspiration",
+    image: "/topics/topic-1.jpg",
   },
   {
     title: "Goal Setting",
     description:
       "Practical, energizing tools that turn passion into a clear plan students can actually follow.",
     group: "Inspiration",
+    image: "/topics/topic-2.jpg",
   },
   {
     title: "Self Esteem",
     description:
       "We help students recognize their potential — even when life has covered it up.",
     group: "Inspiration",
+    image: "/topics/topic-3.jpg",
   },
   {
     title: "Red Ribbon Week",
     description:
       "High-energy assemblies that make healthy, drug-free choices feel powerful and cool.",
     group: "Prevention",
+    image: "/topics/topic-4.jpg",
   },
   {
     title: "Bullying / Cyberbullying",
     description:
       "Honest, current, and relevant — content that captures every student and teacher in the room.",
     group: "Prevention",
+    image: "/topics/topic-5.jpg",
   },
   {
     title: "“At Risk” Assemblies",
     description:
       "Meeting students where they are and channeling their passion toward a personal win.",
     group: "Prevention",
+    image: "/topics/topic-6.jpg",
   },
   {
     title: "Leadership Training",
     description:
       "Equipping student leaders, ASB, and teams with mindset and skills to lead well.",
     group: "Leadership",
+    image: "/topics/topic-7.jpg",
   },
   {
     title: "Assemblies to Motivate for Testing",
     description:
       "Get students fired up and focused right when momentum matters most.",
     group: "Leadership",
+    image: "/topics/topic-8.jpg",
   },
   {
     title: "Teacher Seminars & Staff Development",
     description:
       "Reignite your staff with sessions built to inspire the people who inspire students.",
     group: "Leadership",
+    image: "/topics/topic-9.jpg",
   },
   {
     title: "Career Days",
     description:
       "Help students connect today's choices to the future they're capable of building.",
     group: "Events",
+    image: "/topics/topic-10.jpg",
   },
   {
     title: "Homecoming & ASB Events",
     description:
       "Bring unforgettable energy to your biggest school moments of the year.",
     group: "Events",
+    image: "/topics/topic-11.jpg",
   },
   {
     title: "Student Retreats & Camps",
     description:
       "Immersive experiences that mine the passion in the hearts of young people.",
     group: "Events",
+    image: "/topics/topic-12.jpg",
   },
 ];
 

@@ -23,14 +23,6 @@ export function FounderSection({
                 className="h-auto w-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 rounded-2xl border border-ink/10 bg-white px-5 py-3 text-center shadow-card">
-              <div className="text-sm font-extrabold text-ink">
-                Chad Furlong
-              </div>
-              <div className="text-xs font-medium uppercase tracking-wider text-brand-600">
-                Founder & Speaker
-              </div>
-            </div>
           </div>
         </Reveal>
 
