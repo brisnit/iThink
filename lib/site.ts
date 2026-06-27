@@ -58,7 +58,7 @@ export const topics: Topic[] = [
     description:
       "Our flagship message — helping students break through barriers and believe a bigger life is possible.",
     group: "Inspiration",
-    image: "/topics/topic-1.jpg",
+    image: "/topics/topic-1-v2.jpg",
   },
   {
     title: "Goal Setting",
@@ -72,14 +72,14 @@ export const topics: Topic[] = [
     description:
       "We help students recognize their potential — even when life has covered it up.",
     group: "Inspiration",
-    image: "/topics/topic-3.jpg",
+    image: "/topics/topic-3-v2.jpg",
   },
   {
     title: "Red Ribbon Week",
     description:
       "High-energy assemblies that make healthy, drug-free choices feel powerful and cool.",
     group: "Prevention",
-    image: "/topics/topic-4.jpg",
+    image: "/topics/topic-4-v2.jpg",
   },
   {
     title: "Bullying / Cyberbullying",
@@ -93,7 +93,7 @@ export const topics: Topic[] = [
     description:
       "Meeting students where they are and channeling their passion toward a personal win.",
     group: "Prevention",
-    image: "/topics/topic-6.jpg",
+    image: "/topics/topic-6-v2.jpg",
   },
   {
     title: "Leadership Training",
