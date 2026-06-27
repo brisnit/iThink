@@ -44,7 +44,7 @@ export function Hero() {
       {/* Video background */}
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover object-[50%_78%]"
+        className="absolute inset-0 h-full w-full object-cover object-center"
         poster="/hero/hero-poster.jpg"
         autoPlay={!reduceMotion}
         loop
@@ -54,7 +54,6 @@ export function Hero() {
         aria-hidden
         tabIndex={-1}
       >
-        <source src="/hero/hero.webm" type="video/webm" />
         <source src="/hero/hero.mp4" type="video/mp4" />
       </video>
 
