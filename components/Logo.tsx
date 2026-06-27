@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function Logo({
   className = "",
@@ -7,19 +8,22 @@ export function Logo({
   className?: string;
   tone?: "dark" | "light";
 }) {
-  const ink = tone === "light" ? "text-white" : "text-ink";
+  // On dark backgrounds, render the logo as a clean white mark.
+  const toneClass = tone === "light" ? "brightness-0 invert" : "";
   return (
     <Link
       href="/"
-      aria-label="iTHINKBIG home"
-      className={`group inline-flex items-baseline gap-0.5 font-display text-xl font-extrabold tracking-tight ${ink} ${className}`}
+      aria-label="iThinkBig home"
+      className={`inline-flex items-center transition-opacity hover:opacity-80 ${className}`}
     >
-      <span className="text-brand-600">i</span>
-      <span>THINK</span>
-      <span className="relative">
-        BIG
-        <span className="absolute -right-2 -top-1 h-1.5 w-1.5 rounded-full bg-accent transition-transform group-hover:scale-150" />
-      </span>
+      <Image
+        src="/ithink-logo.png"
+        alt="iThinkBig"
+        width={219}
+        height={58}
+        priority
+        className={`h-7 w-auto md:h-8 ${toneClass}`}
+      />
     </Link>
   );
 }
