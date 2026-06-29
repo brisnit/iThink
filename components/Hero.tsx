@@ -30,13 +30,46 @@ export function Hero() {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
+    // iOS Safari requires the video to be explicitly muted + inline before it
+    // will autoplay; React's `muted` prop alone doesn't reliably set the
+    // attribute, so enforce it on the element directly.
     video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute("muted", "");
+    video.playsInline = true;
+
     if (reduceMotion) {
       video.pause();
-    } else {
-      // Some browsers need an explicit play() call after the muted flag is set.
-      void video.play().catch(() => {});
+      return;
     }
+
+    const tryPlay = () => {
+      const p = video.play();
+      if (p && typeof p.then === "function") p.catch(() => {});
+    };
+
+    // Attempt now, and again once the browser has enough data (mobile often
+    // isn't ready at mount time with preload="metadata").
+    tryPlay();
+    video.addEventListener("loadeddata", tryPlay);
+    video.addEventListener("canplay", tryPlay);
+
+    // Fallback: if autoplay was blocked (e.g. iOS Low Power Mode), kick it off
+    // on the first user interaction.
+    const onInteract = () => tryPlay();
+    const opts: AddEventListenerOptions = { passive: true, once: true };
+    window.addEventListener("touchstart", onInteract, opts);
+    window.addEventListener("pointerdown", onInteract, opts);
+    window.addEventListener("scroll", onInteract, opts);
+
+    return () => {
+      video.removeEventListener("loadeddata", tryPlay);
+      video.removeEventListener("canplay", tryPlay);
+      window.removeEventListener("touchstart", onInteract);
+      window.removeEventListener("pointerdown", onInteract);
+      window.removeEventListener("scroll", onInteract);
+    };
   }, [reduceMotion]);
 
   return (
