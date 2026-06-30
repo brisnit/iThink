@@ -49,26 +49,56 @@ export function Hero() {
       if (p && typeof p.then === "function") p.catch(() => {});
     };
 
-    // Attempt now, and again once the browser has enough data (mobile often
-    // isn't ready at mount time with preload="metadata").
     tryPlay();
-    video.addEventListener("loadeddata", tryPlay);
-    video.addEventListener("canplay", tryPlay);
 
-    // Fallback: if autoplay was blocked (e.g. iOS Low Power Mode), kick it off
-    // on the first user interaction.
+    // iOS often *starts* the autoplay loop and then immediately pauses it (the
+    // SSR markup can't carry the `muted` attribute, and mobile stalls while
+    // buffering). Nudge it back to playing on any unexpected pause/stall.
+    // Cap pause-driven retries so we don't fight a hard block (Low Power Mode).
+    let pauseResumes = 0;
+    const onPause = () => {
+      if (video.ended) return;
+      if (pauseResumes++ < 15) tryPlay();
+    };
+    const onBuffer = () => {
+      if (video.paused && !video.ended) tryPlay();
+    };
+    // A sustained play means earlier stalls recovered — allow future retries.
+    const onTimeUpdate = () => {
+      if (!video.paused) pauseResumes = 0;
+    };
+
+    video.addEventListener("pause", onPause);
+    video.addEventListener("timeupdate", onTimeUpdate);
+    const bufferEvents = [
+      "loadeddata",
+      "canplay",
+      "canplaythrough",
+      "waiting",
+      "stalled",
+      "suspend",
+    ];
+    bufferEvents.forEach((e) => video.addEventListener(e, onBuffer));
+
+    // Resume when returning to the tab.
+    const onVisible = () => {
+      if (document.visibilityState === "visible") onBuffer();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+
+    // Last-resort: start on first user interaction if autoplay was blocked.
     const onInteract = () => tryPlay();
-    const opts: AddEventListenerOptions = { passive: true, once: true };
+    const opts: AddEventListenerOptions = { passive: true };
     window.addEventListener("touchstart", onInteract, opts);
     window.addEventListener("pointerdown", onInteract, opts);
-    window.addEventListener("scroll", onInteract, opts);
 
     return () => {
-      video.removeEventListener("loadeddata", tryPlay);
-      video.removeEventListener("canplay", tryPlay);
+      video.removeEventListener("pause", onPause);
+      video.removeEventListener("timeupdate", onTimeUpdate);
+      bufferEvents.forEach((e) => video.removeEventListener(e, onBuffer));
+      document.removeEventListener("visibilitychange", onVisible);
       window.removeEventListener("touchstart", onInteract);
       window.removeEventListener("pointerdown", onInteract);
-      window.removeEventListener("scroll", onInteract);
     };
   }, [reduceMotion]);
 
@@ -83,11 +113,11 @@ export function Hero() {
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="auto"
         aria-hidden
         tabIndex={-1}
       >
-        <source src="/hero/hero.mp4" type="video/mp4" />
+        <source src="/hero/hero-v2.mp4" type="video/mp4" />
       </video>
 
       {/* Legibility overlays — lighter so the video reads through clearly */}
