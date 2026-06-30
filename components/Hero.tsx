@@ -27,6 +27,9 @@ export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
 
+  // The hero video always autoplays (it's a muted, ambient background and the
+  // brand wants it on every device). Reduce Motion only quiets the decorative
+  // floating blobs below — not the video.
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -38,11 +41,6 @@ export function Hero() {
     video.defaultMuted = true;
     video.setAttribute("muted", "");
     video.playsInline = true;
-
-    if (reduceMotion) {
-      video.pause();
-      return;
-    }
 
     const tryPlay = () => {
       const p = video.play();
@@ -100,7 +98,7 @@ export function Hero() {
       window.removeEventListener("touchstart", onInteract);
       window.removeEventListener("pointerdown", onInteract);
     };
-  }, [reduceMotion]);
+  }, []);
 
   return (
     <section className="relative overflow-hidden bg-ink text-white">
@@ -109,7 +107,7 @@ export function Hero() {
         ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover object-center"
         poster="/hero/hero-poster.jpg"
-        autoPlay={!reduceMotion}
+        autoPlay
         loop
         muted
         playsInline
